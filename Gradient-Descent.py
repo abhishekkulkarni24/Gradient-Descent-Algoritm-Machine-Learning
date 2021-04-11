@@ -1,12 +1,12 @@
 from numpy import *
 
-def compute_error_for_line_given_points(b, m, points):
+def compute_error(b, m, pts):
     totalError = 0
-    for i in range(0, len(points)):
-        x = points[i, 0]
-        y = points[i, 1]
+    for i in range(0, len(pts)):
+        x = pts[i, 0]
+        y = pts[i, 1]
         totalError += (y - (m * x + b)) ** 2
-    return totalError / float(len(points))
+    return totalError / float(len(pts))
 
 def step_gradient(b_current, m_current, points, learningRate):
     b_gradient = 0
@@ -32,14 +32,12 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
 for i in range(1,7,1):
     points = genfromtxt("data"+str(i)+".csv", delimiter=",")
     learning_rate = 0.001
-    initial_b , initial_m , num_iterations = 0 ,0 ,5000
+    initial_b , initial_m , num_iterations = 0 ,0 ,1000
 
-    print ("\nStarting gradient descent for dataset = {0} at b = {1}, m = {2}, error = {3}".format(i,initial_b, initial_m, compute_error_for_line_given_points(initial_b, initial_m, points)))
-
-    print ("Running...")
+    print ("\nStarting gradient descent for dataset = {0} at b = {1}, m = {2}, error = {3}".format(i,initial_b, initial_m, compute_error(initial_b, initial_m, points)))
 
     [b, m] = gradient_descent_runner(points, initial_b, initial_m, learning_rate, num_iterations)
 
-    print ("After {0} iterations b = {1}, m = {2}, error = {3}".format(num_iterations, b, m, compute_error_for_line_given_points(b, m, points)))
+    print ("After {0} iterations b = {1}, m = {2}, error = {3}".format(num_iterations, b, m, compute_error(b, m, points)))
 
     print("\n---------------------------------------------------------------------------------------------------------------------------------\n")
