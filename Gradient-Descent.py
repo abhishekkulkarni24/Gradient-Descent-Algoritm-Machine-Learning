@@ -34,7 +34,7 @@ for i in range(1,7,1):
     learning_rate = 0.001
     initial_b , initial_m , num_iterations = 0 ,0 ,1000
 
-    print ("\nStarting gradient descent for dataset = {0} at b = {1}, m = {2}, error = {3}".format(i,initial_b, initial_m, compute_error(initial_b, initial_m, points)))
+    print ("\nGradient descent for dataset = {0} at b = {1}, m = {2}, error = {3}".format(i,initial_b, initial_m, compute_error(initial_b, initial_m, points)))
 
     [b, m] = gradient_descent_runner(points, initial_b, initial_m, learning_rate, num_iterations)
 
